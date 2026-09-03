@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/advisor-contact/route": "/api/advisor-contact",
+  "/api/finance-news/route": "/api/finance-news",
+  "/insights/page": "/insights",
+  "/advisors/[id]/page": "/advisors/[id]",
+  "/advisors/[id]/connect/page": "/advisors/[id]/connect",
+  "/advisors/page": "/advisors",
+  "/match/loading/page": "/match/loading",
+  "/match/page": "/match",
+  "/match/results/page": "/match/results",
+  "/page": "/"
+}

@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/advisor-contact/route": "app/api/advisor-contact/route.js",
+  "/api/finance-news/route": "app/api/finance-news/route.js",
+  "/insights/page": "app/insights/page.js",
+  "/advisors/[id]/page": "app/advisors/[id]/page.js",
+  "/advisors/[id]/connect/page": "app/advisors/[id]/connect/page.js",
+  "/advisors/page": "app/advisors/page.js",
+  "/match/loading/page": "app/match/loading/page.js",
+  "/match/page": "app/match/page.js",
+  "/match/results/page": "app/match/results/page.js",
+  "/page": "app/page.js"
+}
