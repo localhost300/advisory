@@ -39,7 +39,6 @@ export default async function Profile({ params }: { params: Promise<{ id: string
           <aside className="h-fit border border-gray-200 bg-white p-6">
             <h2 className="font-serif text-xl">Registration details</h2>
             <dl className="mt-6 space-y-5 text-sm">
-              <Detail k="Email" v={advisor.email} />
               <Detail k="Experience" v={`${advisor.years}+ years`} />
               <Detail k="Firms registered with" v={String(advisor.firmCount)} />
               <Detail k="State licenses" v={String(advisor.licensedStates)} />
