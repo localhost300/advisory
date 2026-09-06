@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { advisors, articles } from '@/lib/data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://advisoryrecord.online'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.advisoryrecord.online'
   const now = new Date()
   const core: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },

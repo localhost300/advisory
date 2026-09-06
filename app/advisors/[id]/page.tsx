@@ -41,8 +41,7 @@ export default async function Profile({ params }: { params: Promise<{ id: string
           '@type': 'Person',
           name: advisor.name,
           jobTitle: 'Financial professional',
-          worksFor: { '@type': 'Organization', name: advisor.credentials[1]?.replace(/^Registered with .*? since /, '') || 'Financial services firm' },
-          url: new URL(`/advisors/${advisor.id}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://advisoryrecord.online').toString(),
+          url: new URL(`/advisors/${advisor.id}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://www.advisoryrecord.online').toString(),
           sameAs: [advisor.reportUrl],
         }) }} />
         <div className="mb-8 text-[11px] text-gray-500">ADVISOR DIRECTORY / {advisor.name.toUpperCase()}</div>
