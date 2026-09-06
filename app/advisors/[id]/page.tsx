@@ -1,8 +1,31 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { ArrowRight, ExternalLink, ShieldCheck } from 'lucide-react'
 import { Navbar, Footer } from '@/components/shell'
 import { advisors } from '@/lib/data'
+
+export function generateStaticParams() {
+  return advisors.map((advisor) => ({ id: advisor.id }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params
+  const advisor = advisors.find((item) => item.id === id)
+  if (!advisor) return {}
+
+  return {
+    title: `${advisor.name} | Financial Advisor Profile | AdvisoryRecord`,
+    description: `Research ${advisor.name}, including firm affiliation, registration information, specialties, credentials, and BrokerCheck disclosures.`,
+    alternates: { canonical: `/advisors/${advisor.id}` },
+    openGraph: {
+      title: `${advisor.name} | AdvisoryRecord`,
+      description: `Research the public professional record for ${advisor.name}.`,
+      type: 'profile',
+      url: `/advisors/${advisor.id}`,
+    },
+  }
+}
 
 export default async function Profile({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -13,6 +36,15 @@ export default async function Profile({ params }: { params: Promise<{ id: string
     <>
       <Navbar />
       <main className="container py-12 md:py-20">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: advisor.name,
+          jobTitle: 'Financial professional',
+          worksFor: { '@type': 'Organization', name: advisor.credentials[1]?.replace(/^Registered with .*? since /, '') || 'Financial services firm' },
+          url: new URL(`/advisors/${advisor.id}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://advisoryrecord.online').toString(),
+          sameAs: [advisor.reportUrl],
+        }) }} />
         <div className="mb-8 text-[11px] text-gray-500">ADVISOR DIRECTORY / {advisor.name.toUpperCase()}</div>
         <section className="grid gap-10 border-b border-gray-200 pb-12 md:grid-cols-[1fr_auto]">
           <div className="flex flex-col gap-6 sm:flex-row">

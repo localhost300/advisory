@@ -1,1 +1,11 @@
-node_modules
+node_modules/
+.next/
+
+# Local environment variables and production secrets
+.env
+.env.*
+!.env.example
+
+# Local tooling and logs
+*.log
+.DS_Store
