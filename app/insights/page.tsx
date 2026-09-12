@@ -1,2 +1,41 @@
-import {Navbar,Footer} from '@/components/shell';import {MarketStrip} from '@/components/market';import {articles} from '@/lib/data';import {getFinanceNews} from '@/lib/finance-news';import {ExternalLink} from 'lucide-react';import Link from 'next/link'
-export default async function Insights(){const live=await getFinanceNews();return <><Navbar/><main><section className="container py-16 md:py-20"><div className="eyebrow">AdvisoryRecord Insights</div><h1 className="display mt-3 max-w-3xl text-5xl md:text-6xl">Financial thinking, without the noise.</h1><p className="mt-5 max-w-xl text-sm leading-6 text-gray-600">Context for better conversations about markets, investing, retirement, and planning.</p></section><section className="border-y bg-white py-12"><div className="container"><div className="flex items-end justify-between"><h2 className="display text-3xl">Market snapshot</h2><span className="text-[10px] text-gray-500">Illustrative delayed data · Sep 1, 2026</span></div><div className="mt-6"><MarketStrip/></div></div></section><section className="container py-16"><div className="grid gap-10 lg:grid-cols-[1.35fr_.65fr]"><div><div className="flex items-center justify-between"><h2 className="display text-3xl">Latest financial news</h2><span className="text-[10px] text-gray-500">Headlines link to original publishers</span></div><div className="mt-6 divide-y border-y">{live.length?live.map(a=><a target="_blank" rel="noreferrer" key={a.url} href={a.url} className="group flex items-start justify-between gap-5 py-6"><div><span className="eyebrow">{a.category}</span><h3 className="mt-2 font-serif text-xl group-hover:underline">{a.headline}</h3><p className="mt-2 text-xs text-gray-500">{a.source} · {a.published}</p></div><ExternalLink className="shrink-0 text-gray-400" size={16}/></a>):<div className="py-8"><h3 className="font-serif text-xl">Live headlines are temporarily unavailable.</h3><p className="mt-2 text-sm text-gray-500">The feed will refresh automatically. No stale headlines are substituted.</p></div>}</div></div><aside><h2 className="display text-3xl">Explore by topic</h2><div className="mt-6 grid grid-cols-2 gap-px bg-gray-200">{['Investment','Markets','Retirement','Personal Finance','Economic Outlook','Risk'].map(x=><div key={x} className="bg-gray-50 p-5 text-sm font-bold">{x}</div>)}</div></aside></div></section><section className="container pb-20"><h2 className="display text-3xl">From AdvisoryRecord Editorial</h2><div className="mt-6 grid gap-px bg-gray-200 md:grid-cols-2">{articles.map(a=><article key={a.headline} className="bg-white p-7"><span className="eyebrow">{a.category}</span><h3 className="mt-4 font-serif text-2xl">{a.headline}</h3><p className="mt-3 text-sm leading-6 text-gray-600">{a.summary}</p><Link href={a.url} className="mt-6 inline-block text-xs font-bold">Read article →</Link></article>)}</div></section></main><Footer/></>}
+import { Footer, Navbar } from '@/components/shell'
+import { InsightsLibrary } from '@/components/insights-library'
+import { InsightsNews } from '@/components/insights-news'
+import { MarketStrip } from '@/components/market'
+import { articles } from '@/lib/data'
+
+export default function Insights() {
+  return <>
+    <Navbar />
+    <main>
+      <section className="container py-16 md:py-20">
+        <div className="eyebrow">AdvisoryRecord Insights</div>
+        <h1 className="display mt-3 max-w-3xl text-5xl md:text-6xl">Financial thinking, without the noise.</h1>
+        <p className="mt-5 max-w-xl text-sm leading-6 text-gray-600">Context for better conversations about markets, investing, retirement, and planning.</p>
+      </section>
+
+      <section className="border-y bg-white py-12">
+        <div className="container">
+          <div className="flex items-end justify-between gap-4">
+            <h2 className="display text-3xl">Live stock market snapshot</h2>
+            <span className="text-[10px] text-gray-500">Updated every 5 minutes</span>
+          </div>
+          <div className="mt-6"><MarketStrip /></div>
+        </div>
+      </section>
+
+      <section className="container py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.35fr_.65fr]">
+          <div>
+            <div>
+              <h2 className="display text-3xl">Latest financial news</h2>
+            </div>
+            <InsightsNews />
+          </div>
+          <InsightsLibrary articles={articles} />
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </>
+}

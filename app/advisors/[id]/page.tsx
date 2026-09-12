@@ -58,7 +58,6 @@ export default async function Profile({ params }: { params: Promise<{ id: string
               </div>
             </div>
           </div>
-          <div className="min-w-36 border-l border-gray-200 pl-7"><b className="text-3xl">94%</b><div className="text-[10px] uppercase tracking-wider text-gray-500">Profile match</div><div className="mt-4 h-1 bg-gray-200"><div className="h-full w-[94%] bg-green-500" /></div></div>
         </section>
         <div className="grid gap-12 py-12 lg:grid-cols-[1fr_320px]">
           <div className="space-y-10">
